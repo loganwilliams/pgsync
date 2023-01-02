@@ -259,7 +259,7 @@ class Sync(Base):
         join_queries: bool = JOIN_QUERIES
         self.teardown(drop_view=False)
 
-        for schema in self.schemas:
+        for schema in [s for s in self.schemas if s != 'aiven_extras']:
             self.create_function(schema)
             tables: Set = set()
             # tables with user defined foreign keys
